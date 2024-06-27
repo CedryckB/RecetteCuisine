@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: recettecuisine
+      MYSQL_USER: recetteuser
+      MYSQL_PASSWORD: recettepassword
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/recettecuisine
+      SPRING_DATASOURCE_USERNAME: recetteuser
+      SPRING_DATASOURCE_PASSWORD: recettepassword
+    links:
+      - db

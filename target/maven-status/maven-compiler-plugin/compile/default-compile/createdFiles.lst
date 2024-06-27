@@ -1,0 +1,4 @@
+com/recettecuisine/models/Recipe.class
+com/recettecuisine/repositories/RecipeRepository.class
+com/recettecuisine/controllers/RecipeController.class
+com/recettecuisine/RecetteCuisineApplication.class
